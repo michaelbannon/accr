@@ -94,8 +94,6 @@ const BetForm = () => {
     setBet(createBet(betForm, sortedOdds));
   }
 
-  
-
   return (
     <>
     <form className="bet-form" onSubmit={handleSubmit}>

@@ -9,7 +9,7 @@ const App = () => {
     <Routes>
       <Route index element={<Home />} />
       <Route path="dashboard" element={<Dashboard />}>
-        <Route path="betform" element={<BetForm />} />
+        <Route path="bet-form" element={<BetForm />} />
       </Route>
       <Route path="*" element={<NoMatch />} />
     </Routes>
@@ -31,41 +31,54 @@ const Dashboard = () => {
   )
 };
 
-const sortByHighestOdds = (data) => {
-  const sortedOdds = [];
-  data.forEach((game) => {
-    const sortedGame = {...game};
-    sortedGame.bookmakers[0].markets[0].outcomes.sort((a, b) => b.price - a.price);
-    sortedOdds.push(sortedGame);
-  })
-  return sortedOdds
-}
-
-const createBet = (betFormObj, sortedOdds) => {
-  const { stake, risk, gameAmount } = betFormObj;
-  const riskEval = [2, 1, 0];
-  const bet = sortedOdds.map((betOdds) => {
-    const selectedBet = betOdds.bookmakers[0].markets[0].outcomes[riskEval[risk]];
-    return {
-	    teams: `${betOdds.home_team} v ${betOdds.away_team}`,
-	    bet: selectedBet
-	  }
-  });
-  const betLength = bet.length - 1;
-  let randomStartPoint = bet.length;
-  while ((randomStartPoint + gameAmount) > betLength) {
-    randomStartPoint = Math.floor(Math.random() * betLength);
-  }
-  return bet.slice(randomStartPoint, randomStartPoint + gameAmount);
+const BetSection = ({bet}) => {
+  return (
+    <section className="bets">
+      <p>{bet.teams}</p>
+      <p>Result: {bet.bet.name}</p>
+      <p>{bet.bet.price}</p>
+    </section>
+  )
 }
 
 const BetForm = () => {
   const [betForm, setBetForm] = useState({});
   const [sortedOdds, setSortedOdds] = useState([]);
+  const [bet, setBet] = useState([]);
 
   useEffect(() => {
     setSortedOdds(sortByHighestOdds(data))
   },[])
+
+  const sortByHighestOdds = (data) => {
+    const sortedOdds = [];
+    data.forEach((game) => {
+      const sortedGame = {...game};
+      sortedGame.bookmakers[0].markets[0].outcomes.sort((a, b) => b.price - a.price);
+      sortedOdds.push(sortedGame);
+    })
+    return sortedOdds
+  }
+  
+  const createBet = (betFormObj, sortedOdds) => {
+    const { stake, risk, gameAmount } = betFormObj;
+    const riskEval = [2, 1, 0];
+    const bet = sortedOdds.map((betOdds) => {
+      const selectedBet = betOdds.bookmakers[0].markets[0].outcomes[riskEval[risk]];
+      return {
+        gameStartTime: betOdds.commence_time,
+        teams: `${betOdds.home_team} v ${betOdds.away_team}`,
+        bet: selectedBet,
+        stake: stake
+      }
+    });
+    const betLength = bet.length - 1;
+    let randomStartPoint = bet.length;
+    while ((randomStartPoint + gameAmount) > betLength) {
+      randomStartPoint = Math.floor(Math.random() * betLength);
+    }
+    return bet.slice(randomStartPoint, randomStartPoint + gameAmount);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,26 +90,42 @@ const BetForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const testObj = {
-      stake: 10,
-      risk: 2,
-      gameAmount: 4
-    }
+    //TODO - Set initial state of bet for issue with risk selector not being added unless there's a change
+    setBet(createBet(betForm, sortedOdds));
   }
 
+  
+
   return (
+    <>
     <form className="bet-form" onSubmit={handleSubmit}>
       <div className="bet-form__stake">
         <label htmlFor="stake">Stake</label>
-        <input name="stake" type="number" min="0.00" max="10000.00" step="0.01" />
+        <input name="stake" type="number" min="0.00" max="10000.00" step="0.01" onChange={handleChange} />
       </div>
       <div className="bet-form__risk">
         <label htmlFor="risk">Risk</label>
-        
+        <select name="risk" onChange={handleChange}>
+          <option value="0">Low Risk</option>
+          <option value="1">Medium Risk</option>
+          <option value="2">High Risk</option>
+        </select>
+      </div>
+      <div className="bet-form__games">
+        <label htmlFor="gameAmount">Game count</label>
+        <input name="gameAmount" type="number" min="1" max={sortedOdds.length} step="1" onChange={handleChange} />
       </div>
       <button>Submit</button>
     </form>
-    
+    {bet.length > 0 && (
+      bet.map((newBet, i) => {
+        return <BetSection bet={newBet} />
+      })
+    )}
+    {bet.length > 0 && (
+      <p>Winning amount: £{bet.reduce((acc, current) => acc * current.bet.price, bet[0].stake).toFixed(2)}</p>
+    )}
+    </>
   )
 }
 

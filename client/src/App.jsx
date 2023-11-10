@@ -42,7 +42,7 @@ const BetSection = ({bet}) => {
 }
 
 const BetForm = () => {
-  const [betForm, setBetForm] = useState({});
+  const [betForm, setBetForm] = useState({risk: 0});
   const [sortedOdds, setSortedOdds] = useState([]);
   const [bet, setBet] = useState([]);
 
@@ -72,12 +72,16 @@ const BetForm = () => {
         stake: stake
       }
     });
-    const betLength = bet.length - 1;
-    let randomStartPoint = bet.length;
-    while ((randomStartPoint + gameAmount) > betLength) {
-      randomStartPoint = Math.floor(Math.random() * betLength);
+    const betToBeReturned = [];
+    const numberCheck = [];
+    while (betToBeReturned.length < gameAmount) {
+      let randomNumber = parseInt(Math.abs(Math.floor(Math.random() * bet.length - 1)));
+      if (!numberCheck.includes(randomNumber)) {
+        numberCheck.push(randomNumber);
+        betToBeReturned.push(bet[randomNumber]);
+      }
     }
-    return bet.slice(randomStartPoint, randomStartPoint + gameAmount);
+    return betToBeReturned;
   }
 
   const handleChange = (e) => {
@@ -89,8 +93,7 @@ const BetForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    //TODO - Set initial state of bet for issue with risk selector not being added unless there's a change
+    e.preventDefault();
     setBet(createBet(betForm, sortedOdds));
   }
 
@@ -117,7 +120,7 @@ const BetForm = () => {
     </form>
     {bet.length > 0 && (
       bet.map((newBet, i) => {
-        return <BetSection bet={newBet} />
+        return <BetSection key={i} bet={newBet} />
       })
     )}
     {bet.length > 0 && (

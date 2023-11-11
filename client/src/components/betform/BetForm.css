@@ -1,0 +1,72 @@
+.bet-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bet-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  gap: 1.5rem;
+  min-width: 60%;
+}
+
+.bet-form__container {
+  background-color: var(--dark);
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255,255,255, 0.1);
+  display: flex;
+  gap: 1rem;
+}
+
+.bet-form .right {
+  display: flex;
+  flex-direction: column;
+}
+
+.bet-form div label {
+  color: var(--lightest);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.bet-form__icon {
+  background-color: rgba(255,255,255,0.1);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+}
+
+.bet-form__icon svg path{
+  stroke: var(--lightest)
+}
+
+.bet-form input {
+  height: 40px;
+  margin-top: 1rem;
+  background-color: var(--darkest);
+  color: var(--lightest);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  font-family: 'PP Neue Montreal';
+}
+
+.bet-form button {
+  height: 50px;
+  border-radius: 0.25rem;
+  background-color: var(--lightest);
+  border: none;
+  color: var(--darkest);
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'PP Neue Montreal';
+}

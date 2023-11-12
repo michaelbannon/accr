@@ -7,7 +7,7 @@ const STEP = 1;
 const MIN = 0;
 const MAX = 2;
 
-const BetRange = ({ rtl, handleRangeChange }) => {
+const BetRange = ({ value, rtl, handleRangeChange }) => {
   const [values, setValues] = useState([0]);
 
   useEffect(() => {

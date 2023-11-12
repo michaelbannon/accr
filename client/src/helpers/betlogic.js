@@ -15,13 +15,17 @@ const createBet = (betFormObj, sortedOdds) => {
     const selectedBet = betOdds.bookmakers[0].markets[0].outcomes[riskEval[risk]];
     return {
       gameStartTime: betOdds.commence_time,
-      teams: `${betOdds.home_team} v ${betOdds.away_team}`,
+      home_team: betOdds.home_team,
+      away_team: betOdds.away_team,
       bet: selectedBet,
       stake: stake
     }
   });
   const betToBeReturned = [];
   const numberCheck = [];
+  if (gameAmount == bet.length) {
+    return bet;
+  }
   while (betToBeReturned.length < gameAmount) {
     let randomNumber = parseInt(Math.abs(Math.floor(Math.random() * bet.length - 1)));
     if (!numberCheck.includes(randomNumber)) {

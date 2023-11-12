@@ -1,0 +1,37 @@
+.dashboard-home-container {
+  padding: 2rem;
+  padding-left: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.dashboard-home-container p {
+  font-size: 0.875rem;
+  margin: 0.3rem 0;
+}
+
+.dashboard-home__chart {
+  background-color: var(--dark);
+  grid-area: 1 / 1 / 2 / 3;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255,255,255, 0.1);
+  padding: 1.5rem;
+}
+
+.dashboard-home__ongoing {
+  background-color: var(--dark);
+  grid-area: 1 / 3 / 2 / 4;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255,255,255, 0.1);
+  padding: 1.5rem;
+}
+
+.dashboard-home__featured {
+  background-color: var(--dark);
+  grid-area: 2 / 1 / 3 / 4;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255,255,255, 0.1);
+  padding: 1.5rem;
+}

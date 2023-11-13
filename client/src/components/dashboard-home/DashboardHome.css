@@ -35,3 +35,7 @@
   border: 1px solid rgba(255,255,255, 0.1);
   padding: 1.5rem;
 }
+
+.larger-heading {
+  font-size: 1.3rem;
+}

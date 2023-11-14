@@ -17,6 +17,7 @@
   background-color: var(--dark);
   border-radius: 0.25rem;
   padding: 2rem 2rem 2rem 0;
+  border: 1px solid rgba(255,255,255, 0.1);
 }
 
 .logo-container {
@@ -41,6 +42,16 @@
   gap: 1.5rem;
 }
 
+.dashboard-main-nav ul li a.active {
+  background-color: var(--medium);
+  border: 1px solid rgba(255,255,255, 0.05);
+  color: var(--lightest);
+}
+
+.dashboard-main-nav ul li a.active .nav-link__icon {
+  background: linear-gradient(45deg, var(--accent-light) 0%, var(--accent) 100%);
+}
+
 .dashboard-main-nav__link {
   color: var(--light);
   display: flex;
@@ -48,12 +59,6 @@
   gap: 0.75rem;
   padding: 0.5rem;
   border-radius: 0.33rem;
-}
-
-.dashboard-main-nav__link--selected {
-  background-color: var(--medium);
-  border: 1px solid rgba(255,255,255, 0.05);
-  color: var(--lightest);
 }
 
 .nav-link__icon {
@@ -64,10 +69,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.25rem;
-}
-
-.dashboard-main-nav__link--selected .nav-link__icon {
-  background: linear-gradient(45deg, rgba(251,227,234,1) 0%, rgba(255,182,225,1) 100%);
 }
 
 .nav-link__icon svg path {

@@ -14,11 +14,13 @@ const createBet = (betFormObj, sortedOdds) => {
   const bet = sortedOdds.map((betOdds) => {
     const selectedBet = betOdds.bookmakers[0].markets[0].outcomes[riskEval[risk]];
     return {
+      gameId: betOdds.id,
       gameStartTime: betOdds.commence_time,
       home_team: betOdds.home_team,
       away_team: betOdds.away_team,
       bet: selectedBet,
-      stake: stake
+      stake: stake,
+      risk: risk
     }
   });
   const betToBeReturned = [];

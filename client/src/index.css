@@ -1,9 +1,17 @@
 :root {
   /* TODO: Global variables to go here */
-  --darkest: #1F1F1F;
+  /* --darkest: #1F1F1F;
   --dark: #2A2A2A;
   --medium: #303030;
-  --light: #9C9C9C;
+  --light: #9C9C9C; */
+
+  --darkest: #0f121b;
+  --dark: #1E2028;
+  --medium: #34373D;
+  --light: #80848d;
+  --accent: #ff5a36;
+  --accent-light: #E46D4A;
+
   --lightest: #FFFFFF;
   --success: #54B585;
   --warning: #E3A657;

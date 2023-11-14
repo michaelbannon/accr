@@ -39,3 +39,15 @@
 .larger-heading {
   font-size: 1.3rem;
 }
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.featured-bet-container {
+  background-color: var(--medium);
+  padding: 1rem;
+  border-radius: 0.25rem;
+}

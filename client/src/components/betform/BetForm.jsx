@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import BetRange from "../bet-range/BetRange"
 
-import data from '../../data/mock-data';
+import apiService from '../../apiservice'
 import { sortByHighestOdds, createBet } from '../../helpers/betlogic'
 import './BetForm.css'
 
@@ -10,7 +10,11 @@ const BetForm = ({betForm, setBetForm, setBetToggle, setBet}) => {
   const [sortedOdds, setSortedOdds] = useState([]);
 
   useEffect(() => {
-    setSortedOdds(sortByHighestOdds(data));
+    (async function () {
+      const data = await apiService.getOdds();
+      setSortedOdds(sortByHighestOdds(data[0].oddsData));
+    }
+    )();
   },[]);
 
   const handleChange = (e) => {

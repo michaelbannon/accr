@@ -1,7 +1,6 @@
 import './BetSection.css'
 
 const BetSection = ({bet}) => {
-  console.log(bet)
   return (
     <section className="bets-card">
       <div className="bets-card__fixture">
@@ -11,7 +10,7 @@ const BetSection = ({bet}) => {
       </div>
       
       <p>Result: {bet.bet.name}</p>
-      <p>{bet.bet.price}</p>
+      <p>Odds: {bet.bet.price}</p>
     </section>
   )
 };

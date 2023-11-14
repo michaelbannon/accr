@@ -49,7 +49,7 @@ const BetRange = ({ value, rtl, handleRangeChange }) => {
                 borderRadius: '4px',
                 background: getTrackBackground({
                   values,
-                  colors: ['#548BF4', '#ccc'],
+                  colors: ['#ff5a36', '#ccc'],
                   min: MIN,
                   max: MAX,
                   rtl
@@ -80,7 +80,7 @@ const BetRange = ({ value, rtl, handleRangeChange }) => {
               style={{
                 height: '16px',
                 width: '5px',
-                backgroundColor: isDragged ? '#548BF4' : '#CCC'
+                backgroundColor: isDragged ? '#E46D4A' : '#CCC'
               }}
             />
           </div>

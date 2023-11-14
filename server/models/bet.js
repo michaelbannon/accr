@@ -5,20 +5,8 @@ const betSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  homeTeam: {
-    type: String,
-    required: true
-  },
-  awayTeam: {
-    type: String,
-    required: true
-  },
-  result: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
+  games: {
+    type: Array,
     required: true
   },
   risk: {
@@ -29,13 +17,13 @@ const betSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  gameStartTime: {
-    type: Date,
-    required: true
-  },
   likes: {
     type: Number,
     default: 0
+  },
+  betResult: {
+    type: String,
+    default: 'Pending'
   }
 });
 

@@ -1,0 +1,8 @@
+.your-bets-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: var(--dark);
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255,255,255, 0.1);
+  padding: 1.5rem;
+}

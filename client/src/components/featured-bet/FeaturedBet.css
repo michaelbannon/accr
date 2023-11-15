@@ -1,0 +1,17 @@
+.featured-bets-card__fixture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.featured-bets-card__teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.featured-bets-card__teams img {
+  max-height: 25px;
+}

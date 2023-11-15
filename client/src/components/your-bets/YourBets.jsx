@@ -21,8 +21,8 @@ const YourBets = () => {
   },[])
 
   return (
-    <section className="dashboard-home-container">
-      <section className="your-bets-container">
+    <section className="your-bets-outer-container">
+      <section className="your-bets-inner-container">
         {
           userBets.map((featuredBet, list) => {
             return <FeaturedBet key={list} featuredBet={featuredBet} />

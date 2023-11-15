@@ -5,11 +5,8 @@ const app = express();
 const port = 3000;
 const cron = require('node-cron');
 
-const oddsController = require('./controllers/odds-data')
-const scoresController = require('./controllers/scores')
-
-const URL = 'https://api.the-odds-api.com/v4/sports/';
-const API_KEY = '063f3481e3da1e01acdf7d59918389c0';
+const oddsController = require('./controllers/odds-data');
+const scoresController = require('./controllers/scores');
 
 app.use(cors());
 app.use(express.json());
